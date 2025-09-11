@@ -1,21 +1,13 @@
 import sys
 
 n = int(input())
-words = []
+words = set()
+
 for i in range(n):
-    word = input()
-    if word not in words:
-        words.append(word)
+    words.add(sys.stdin.readline().strip())
 
-words.sort()
+words_by_alph = sorted(words)
+words_by_len = sorted(words_by_alph, key=len)
 
-buckets = [[] for _ in range(51)]
-
-# 길이 기준으로 버킷에 넣기
-for word in words:
-    buckets[len(word)].append(word)
-
-# 길이가 짧은 것부터 출력
-for bucket in buckets:
-    for word in bucket:
-        print(word)
+for word in words_by_len:
+    print(word)
