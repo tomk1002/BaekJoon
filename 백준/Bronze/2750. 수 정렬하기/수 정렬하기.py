@@ -1,9 +1,10 @@
-n = int(input())
-nums = []
-for _ in range(n):
-    x = int(input())
-    nums.append(x)
+import sys
+input = sys.stdin.readline
 
+n = int(input())
+
+nums = [int(input()) for _ in range(n)]
 nums.sort()
+
 for number in nums:
     print(number)
