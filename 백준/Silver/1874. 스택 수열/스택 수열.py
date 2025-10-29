@@ -24,4 +24,4 @@ for _ in range(N):
 if impossible:
     print("NO")
 else:
-    print(*res,sep='\n')
+    print('\n'.join(res))
