@@ -6,31 +6,33 @@ input = sys.stdin.readline
 N = int(input())
 
 for _ in range(N):
-    order = input().rstrip()
+    order = input().strip()
     M = int(input())
-    given = input().rstrip().strip('[]')
-    case = deque(given.split(',')) if given else deque()
+    given = input().strip()
+
+    if M == 0:
+        case = deque()
+    else:
+        case = deque(given[1:-1].split(','))
     
     flipped = False
-    escaped = False
-
+    error = False
 
     for cmd in order:
         if cmd == 'R':
             flipped = not flipped
         if cmd == 'D':
             if not case:
-                escaped = True
+                error = True
                 break
             if flipped:
                 case.pop()
             else:
                 case.popleft()
 
-    if escaped == True:
+    if error:
         print('error')
     else:
         if flipped:
-            print(f"[{','.join(map(str,reversed(case)))}]")
-        else:
-            print(f"[{','.join(map(str,case))}]")
+            case.reverse()
+        print(f"[{','.join(case)}]")
